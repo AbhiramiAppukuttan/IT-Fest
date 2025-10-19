@@ -33,8 +33,11 @@ nav {
 }
 
 nav img {
-  width: 70px;
-} 
+  height: 60px;                /* desktop logo height */
+  width: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;   
+}
 
 .nav-links {
   flex: 1;
@@ -55,12 +58,116 @@ nav img {
    color: rgb(48, 46, 46);
 }
 
+.menu-icon {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+
+
+@media(max-width: 900px) {
+  .nav-links {
+    position: absolute;
+    background: white;
+    top: 50px;
+    right: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    text-align: center;
+    transition: height 0.4s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    height: 0;                     /* Hidden initially */
+    transition: height 0.4s ease;  /* Smooth open/close */
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links ul li {
+    display: block;
+    padding: 15px;
+  }
+
+  .nav-links.show {
+    height: 250px;  /* visible when toggled */
+  }
+
+  .menu-icon {
+    display: block;
+    color: #000;
+  }
+
+  .nav-links.show {
+    height: 250px;  /* Visible */
+  }
+
+  /* Show hamburger on mobile */
+  .menu-icon {
+    display: block;
+    color: #000;
+  }
+
+  #menu-toggle:checked ~ .nav-links {
+    height: 250px;
+  }
+
+  nav {
+    height: 60px;              /* slightly shorter navbar */
+    padding: 0 15px;
+  }
+
+  nav img {
+    height: 50px;              /* smaller logo */
+  }
+
+}
+
+@media (max-width: 600px) {
+  nav {
+    height: 60px;              /* smaller navbar height */
+  }
+
+  nav img {
+    height: 40px;              /* smaller logo */
+  }
+
+  .menu-icon {
+    font-size: 26px;           /* make toggle icon balanced */
+  }
+}
+
+
 /* Hero Content */
+/* Header Banner Section */
+.header {
+  width: 100%;
+  min-height: 100vh; /* full screen height */
+  background-image: url(./image/home.jpg);
+  background-size: cover;           /* scales image to fill */
+  background-position: center;      /* centers image */
+  background-repeat: no-repeat;     /* prevents repeating */
+  background-attachment: fixed;     /* gives smooth parallax effect (optional) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;                /* below navbar */
+}
+
+
+/* Hero content text */
 .hero-content {
   max-width: 600px;
   color: white;
   padding-left: 100px;
-  padding-top: 10%;
 }
 
 .hero-content h1 {
@@ -77,12 +184,12 @@ nav img {
   color: #f0f0f0;
 }
 
-/* Button */
+/* Button styling */
 .hero-btn {
   display: inline-block;
-  background: transparent;      
-  border: 1px solid rgb(51, 49, 49);    
-  color: black;                 
+  background: transparent;
+  border: 1px solid rgb(59, 59, 59);
+  color:#333;
   font-size: 18px;
   font-weight: 500;
   padding: 12px 30px;
@@ -91,42 +198,44 @@ nav img {
   transition: 0.3s;
 }
 
-.hero-btn:hover {           
-  color: #000;                 
-  font-weight: 500;            
+.hero-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-3px);
+  color: #111;
 }
-
 
 
 /* Responsive */
 @media (max-width: 900px) {
   .header {
-    padding-left: 30px;
-    text-align: center;
-    justify-content: center;
-  }
-  .hero-content h1 {
-    font-size: 40px;
-  }
-  .hero-content .hero-subtitle {
-    font-size: 16px;
+    background-position: top center; /* focus top area */
+    background-attachment: scroll;   /* improves mobile performance */
+    min-height: 80vh;
   }
 }
 
+/* Mobile */
 @media (max-width: 600px) {
+  .header {
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;
+    min-height: 70vh; /* smaller height for mobile */
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 0 20px;
+  }
+
   .hero-content h1 {
-    font-size: 32px;
+    font-size: 30px;
   }
-  .hero-content .hero-subtitle {
-    font-size: 14px;
-  }
-  .hero-btn {
-    padding: 12px 30px;
-    font-size: 16px;
+
+  .hero-content p {
+    font-size: 15px;
   }
 }
-
 
 /* About Section */
 .about {
@@ -173,8 +282,6 @@ nav img {
   padding: 0 20px;
 }
 
-
-
 .about-content p {
   font-size: 18px;
   line-height: 1.8;
@@ -214,11 +321,18 @@ nav img {
 
   .about-content {
     padding: 20px 0;
+     align-items: center; 
+    text-align: center;  
   }
 
   .about-image img {
     max-height: 300px;
   }
+
+  .about-btn {
+    margin: 15px auto 0 auto; /* centers the button */
+  }
+
 }
 
 /* Article section */
@@ -350,17 +464,6 @@ nav img {
   margin-bottom: 20px;
 }
 
-.services-text ul {
-  list-style: disc inside;
-  margin-bottom: 20px;
-}
-
-.services-text ul li {
-  font-size: 16px;
-  color: #444;
-  margin-bottom: 10px;
-}
-
 /* Button */
 .services-btn {
   display: inline-block;
@@ -404,10 +507,6 @@ nav img {
   .services-container {
     flex-direction: column;
     text-align: center;
-  }
-
-  .services-text ul {
-    text-align: left;
   }
 
   .services-text, .services-video {

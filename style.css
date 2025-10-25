@@ -4,7 +4,6 @@
   box-sizing: border-box; 
 }
 
-
 .header{
   min-height: 100vh;
   width: 100%;
@@ -67,8 +66,6 @@ nav img {
 #menu-toggle {
   display: none;
 }
-
-
 
 @media(max-width: 900px) {
   .nav-links {
@@ -204,6 +201,51 @@ nav img {
   color: #111;
 }
 
+/* Slider container */
+.header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Slider (background) */
+.slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./image/home1.jpg'); /* first image */
+  background-size: cover;
+  background-position: center;
+  animation: changeBg 6s forwards; /* duration + keep last frame */
+}
+
+/* Keyframes: change from first to second image */
+@keyframes changeBg {
+  0% {
+    background-image: url('./image/home.jpg');
+  }
+  25%{
+    background-image: url('./image/home.jpg');
+  }
+  50% {
+    background-image: url('./image/article3.jpg');
+  }
+  100% {
+    background-image: url('./image/article3.jpg'); /* second image */
+  }
+}
+
+/* Hero content on top */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  padding-left: 100px;
+  color: white;
+}
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -571,21 +613,6 @@ nav img {
 }
 
 .footer-links a:hover {
-  color: #ff9800;
-}
-
-.socials {
-  margin-top: 15px;
-}
-
-.socials a {
-  margin: 0 10px;
-  color: #fff;
-  font-size: 18px;
-  transition: color 0.3s;
-}
-
-.socials a:hover {
   color: #ff9800;
 }
 
